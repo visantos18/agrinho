@@ -1,15 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.7/lib/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.7/lib/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Vida & Equilíbrio</title>
+    <style>
+        /* CSS - O Estilo do Site */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7f4; /* Verde bem clarinho */
+            color: #333;
+            line-height: 1.6;
+        }
 
-  </head>
-  <body>
-    <main>
-    </main>
-    <script src="sketch.js"></script>
-  </body>
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #e8f5e9;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2e7d32;
+            border-left: 5px solid #81c784;
+            padding-left: 10px;
+        }
+
+        .img-container img {
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-top: 15px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .interativo {
+            background-color: #e8f5e9;
+            text-align: center;
+            border: 2px dashed #2e7d32;
+        }
+
+        button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+            transform: scale(1.05);
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vida & Equilíbrio 🌿</h1>
+        <p>Seu espaço diário para cuidar do corpo e da mente</p>
+        <nav>
+            <a href="#habitos">Hábitos</a>
+            <a href="#videos">Vídeos</a>
+            <a href="#interativo">Interatividade</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <section id="habitos">
+            <h2>Pequenos Hábitos, Grandes Mudanças</h2>
+            <p>Cuidar da saúde não precisa ser difícil. Comece com 5 minutos de alongamento ou trocando o elevador pela escada.</p>
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800" alt="Yoga e Bem-estar">
+            </div>
+        </section>
+
+        <section id="videos">
+            <h2>Momento de Relaxar</h2>
+            <p>Assista a este guia de respiração para aliviar a tensão do dia:</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/inpok4MKVLM" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="interativo" class="interativo">
+            <h2>Sua Pausa Ativa ⚡</h2>
+            
+            <p id="frase-motivacional">"Clique para uma dose de energia!"</p>
+            <button onclick="mudarFrase()">Nova Frase ✨</button>
+
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid #c8e6c9;">
+
+            <h3>Contador de Hidratação</h3>
+            <p>Copos de hoje: <strong id="contador-agua" style="font-size: 1.5em; color: #0288d1;">0</strong></p>
+            <button onclick="beberAgua()" style="background-color: #0288d1;">Beber Água 💧</button>
+
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid #c8e6c9;">
+
+            <h3>Mural de Compromissos</h3>
+            <p>O que você vai fazer por você hoje?</p>
+            <input type="text" id="input-compromisso" placeholder="Ex: Ler 10 páginas de um livro...">
+            <button onclick="postarCompromisso()">Postar</button>
+            <ul id="lista-compromissos" style="list-style: none; padding: 0; margin-top: 15px; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;"></ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Criado com carinho para o seu bem-estar &copy; 2026</p>
+    </footer>
+
+    <script>
+        function mudarFrase() {
+            const frases = [
+                "Respire fundo. Você está indo bem!",
+                "Pequenos progressos ainda são progressos.",
+                "Sua saúde mental é sua prioridade.",
+                "Beba um copo de água e relaxe os ombros.",
+                "Amanhã será um dia com novas oportunidades!",
+                "Você é mais forte do que imagina."
+            ];
+            const aleatorio = Math.floor(Math.random() * frases.length);
+            document.getElementById('frase-motivacional').innerText = frases[aleatorio];
+        }
+
+        let copos = 0;
+        function beberAgua() {
+            copos++;
+            document.getElementById('contador-agua').innerText = copos;
+        }
+
+        function postarCompromisso() {
+            const input = document.getElementById('input-compromisso');
+            const lista = document.getElementById('lista-compromissos');
+            if (input.value.trim() !== "") {
+                const li = document.createElement('li');
+                li.innerHTML = "✅ " + input.value;
+                li.style.background = "#fff";
+                li.style.padding = "10px";
+                li.style.marginBottom = "5px";
+                li.style.borderRadius = "10px";
+                li.style.boxShadow = "0 2px 5px rgba(0,0,0,0.05)";
+                lista.appendChild(li);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
 </html>

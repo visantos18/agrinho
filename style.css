@@ -1,7 +1,139 @@
-html, body {
-  margin: 0;
-  padding: 0;
+/* Configurações Gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f7f4; /* Verde água relaxante */
+    color: #333;
+    line-height: 1.6;
 }
-canvas {
-  display: block;
+
+/* Cabeçalho */
+header {
+    background-color: #2e7d32; /* Verde folha */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: #e8f5e9;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #a5d6a7;
+    text-decoration: underline;
+}
+
+/* Layout das Seções */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+section {
+    background: white;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: #2e7d32;
+    border-left: 5px solid #81c784;
+    padding-left: 10px;
+}
+
+/* Mídias (Fotos e Vídeos) */
+.img-container img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+    transition: transform 0.3s;
+}
+
+.img-container img:hover {
+    transform: scale(1.02); /* Efeito de zoom leve ao passar o mouse */
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-top: 15px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+/* Área Interativa (Engajamento) */
+.interativo {
+    background-color: #e8f5e9;
+    text-align: center;
+    border: 2px dashed #2e7d32;
+}
+
+/* Botões Estilizados */
+button {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px); /* Botão sobe levemente */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Inputs de Texto */
+input {
+    padding: 12px;
+    width: 60%;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 0.9em;
 }
